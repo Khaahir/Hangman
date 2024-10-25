@@ -9,11 +9,19 @@ const words = [
   "mongodb",
 ];
 
-let letterbuttons = document.querySelectorAll(button);
+// funtionen som lägger in bokstvöer i form rutan
 
-letterbuttons.addEventListener("click", () => {
-  console.log(letterbuttons);
-});
+let display = document.querySelector(".display");
+
+function showOnDisplay(input) {
+  display.value += input;
+}
+
+function clearDisplay() {
+  display.value = "";
+}
+
+// nedan blir för avancerat för oss som är nybörjare vi förstår ingenting så vi får göra saker lite mer basic =)
 
 // alphbet();
 
