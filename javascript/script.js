@@ -8,35 +8,46 @@ const words = [
   "html",
   "mongodb",
 ];
-let gussedLetters = [];
-let wrongGusses = [];
+let guessedLetters = [];
+let wrongGuesses = [];
 let attempts = 6;
 let randomWord;
+
 
 const display = document.querySelector(".display");
 const countGuess = document.querySelector(".count-guess");
 const btnAgain = document.querySelector(".again");
 
 function reset() {
-  gussedLetters = [];
-  wrongGusses = [];
-  attempts = 6;
+
 }
 
 function startGame() {
+
+  // Väljer ett slumpmässigt ord från listan
   randomWord = words[Math.floor(Math.random() * words.length)];
   console.log(randomWord.split(""));
 
-  let gussedword = Array(randomWord.length).fill("_");
-  console.log(gussedword);
+  // Fyller guessedLetters med understrykningar för att representera varje bokstav
+  guessedLetters = Array(randomWord.length).fill("_");
+  console.log(guessedLetters);
+
+  displayWord();
 }
 
-function displayWord() {}
+function displayWord() {
+  // Uppdaterar displayfältet med understrykningar med antal bokstäver i ett ord
+  display.value = guessedLetters.join(" ");
 
+}
+
+// Event till en lyssnare för tangenttryckningar
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
-  display.value += gussedword;
-  // console.log(letter);
+  
+  // Här kan man kontrollera att inmatningen är en boksatv
+
+  console.log(letter); 
 });
 
 function handleGuess() {}
@@ -48,3 +59,6 @@ function updateCorrectGusses() {}
 function checkGameStatus() {}
 
 function endGame() {}
+
+
+startGame();
