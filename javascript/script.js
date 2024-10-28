@@ -12,16 +12,19 @@ let guessedLetters = [];
 let wrongGuesses = []; // Lista för felaktiga gissningar
 let attempts = 6; // antaö max gissningar
 let randomWord;
-let attemptsLeft;
+let gameActive = true; 
+
 
 const display = document.querySelector(".display");
 const countGuess = document.querySelector(".count-guess");
 const btnAgain = document.querySelector(".again");
 const bodycolor = document.querySelector("body");
+const gamestatus = document.querySelector(".gamestatus");
 
 countGuess.textContent = attempts;
 display.value = guessedLetters;
 const usedLetters = document.querySelector(".used-letters"); // visa använda bokstäver
+
 
 
 // Återställer spelet
@@ -30,7 +33,8 @@ function reset() {
   wrongGuesses = [];
   attempts = 6;
   countGuess.textContent = attempts;
-  // randomWord = null;
+  gameActive = true; 
+  bodycolor.style.backgroundColor = "";
 }
 
 
@@ -63,6 +67,9 @@ function displayWord() {
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
 
+  if (!gameActive) return; // Stoppa om spelet inte är aktivt
+
+
   // Om bokstaven finns i ordet, uppdatera de rätta gissningarna
   if (randomWord.includes(letter)) {
     updateCorrectGuesses(letter);
@@ -86,6 +93,7 @@ function updateWrongGuesses(letter) {
     attempts--;
     countGuess.textContent = attempts;
     displayWord();
+    checkGameStatus();
   }
 }
 
@@ -100,6 +108,7 @@ function updateCorrectGuesses(letter) {
   }
   // uppdaterar ord i displayen
   displayWord();
+  checkGameStatus();
 }
 
 
@@ -109,10 +118,23 @@ function checkGameStatus() {
   if (!guessedLetters.includes("_")) {
     display.value.textContent = "Grattis du vann🎉";
     bodycolor.style.backgroundColor = "green";
-  } else if (attemptsLeft === 0) {
+
+    gamestatus.textContent = "Grattis du vann🎉! Spelslut! Tryck på knappen för att starta om.";
+    gamestatus.style.color = "green"
+
+    gameActive = false; // Lås spelet
+
+
+  } else if (attempts === 0) {
     // Om försöken är slut har spelaren förlorat
     display.value.textContent = `💀Du förlorade ordet var:${randomWord}`;
     bodycolor.style.backgroundColor = "red";
+
+    gamestatus.textContent = `💀Du förlorade ordet var:${randomWord}`;
+    gamestatus.style.color = "red"
+
+    gameActive = false; // Lås spelet
+
   }
 }
 
