@@ -13,12 +13,8 @@ const words = [
 
 let display = document.querySelector(".display");
 
-function showOnDisplay(input) {
+function guess(input) {
   display.value += input;
-}
-
-function clearDisplay() {
-  display.value = "";
 }
 
 // nedan blir för avancerat för oss som är nybörjare vi förstår ingenting så vi får göra saker lite mer basic =)
