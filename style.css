@@ -31,16 +31,6 @@ body {
   grid-row: 2/ 7;
 }
 
-.word-btn {
-  grid-column: 2 / 12;
-  grid-row: 8 / 13;
-}
-
-.letter {
-  width: 5rem;
-  height: 3.8rem;
-}
-
 .display {
   grid-column: 6 / 12;
   grid-row: 5/ 7;
