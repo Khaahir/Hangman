@@ -12,6 +12,7 @@ let guessedLetters = [];
 let wrongGuesses = []; // Lista för felaktiga gissningar
 let attempts = 6; // antaö max gissningar
 let randomWord;
+let attemptsLeft;
 
 const display = document.querySelector(".display");
 const countGuess = document.querySelector(".count-guess");
@@ -22,8 +23,19 @@ countGuess.textContent = attempts;
 display.value = guessedLetters;
 const usedLetters = document.querySelector(".used-letters"); // visa använda bokstäver
 
-function reset() {}
 
+// Återställer spelet
+function reset() {
+  guessedLetters = [];
+  wrongGuesses = [];
+  attempts = 6;
+  countGuess.textContent = attempts;
+  // randomWord = null;
+}
+
+
+
+// Initerar spelet
 function startGame() {
   // Väljer ett slumpmässigt ord från listan
   randomWord = words[Math.floor(Math.random() * words.length)];
@@ -34,13 +46,18 @@ function startGame() {
   console.log(guessedLetters);
 
   displayWord();
+  checkGameStatus();
 }
 
+
+
+// Uppdaterar displayfältet med nytt ord
 function displayWord() {
-  // Uppdaterar displayfältet med understrykningar med antal bokstäver i ett ord
   display.value = guessedLetters.join(" ");
   usedLetters.textContent = `Felaktiga gissningar: ${wrongGuesses.join(", ")}`; // visa använda bokstäver
 }
+
+
 
 // Event till en lyssnare för tangenttryckningar
 document.addEventListener("keydown", (event) => {
@@ -56,10 +73,15 @@ document.addEventListener("keydown", (event) => {
   console.log(letter);
 });
 
+
+
 function handleGuess() {}
 
+
+
+// Kontrollerar  Uppdaterar poängen vid felgissning
 function updateWrongGuesses(letter) {
-  if (!wrongGuesses.includes(letter)) {
+  if (!wrongGuesses.includes(letter) && attempts > 0) {
     wrongGuesses.push(letter);
     attempts--;
     countGuess.textContent = attempts;
@@ -67,6 +89,9 @@ function updateWrongGuesses(letter) {
   }
 }
 
+
+
+// Kontrollerar ordet mot rätt inmatat boksatv
 function updateCorrectGuesses(letter) {
   for (let i = 0; i < randomWord.length; i++) {
     if (randomWord[i] === letter) {
@@ -76,6 +101,8 @@ function updateCorrectGuesses(letter) {
   // uppdaterar ord i displayen
   displayWord();
 }
+
+
 
 function checkGameStatus() {
   // Om det inte finns några streck kvar betyder det att spelaren har vunnit
@@ -89,6 +116,18 @@ function checkGameStatus() {
   }
 }
 
-function endGame() {}
+
+
+function endGame() {} 
+
+
+
+// Återställknappen
+btnAgain.addEventListener("click", ()=> {
+  reset();
+  startGame();
+});
+
+
 
 startGame();
