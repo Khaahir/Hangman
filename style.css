@@ -26,9 +26,10 @@ body {
   grid-template-rows: repeat(12, 1fr);
 }
 
-.hangman {
+#hangman {
   grid-column: 1 / span 4;
-  grid-row: 2/ 6;
+  grid-row: 2/ 7;
+  border: solid 2px black;
 }
 
 .word-btn {
