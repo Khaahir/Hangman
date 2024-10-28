@@ -1,3 +1,7 @@
+let theWord;
+
+
+
 const words = [
   "javascript",
   "python",
@@ -8,6 +12,9 @@ const words = [
   "html",
   "mongodb",
 ];
+
+theWord = words[Math.floor(Math.random() * words.length)]
+console.log(theWord)
 
 // funtionen som lägger in bokstvöer i form rutan
 
