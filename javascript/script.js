@@ -35,6 +35,8 @@ function reset() {
   countGuess.textContent = attempts;
   gameActive = true; 
   bodycolor.style.backgroundColor = "";
+  gamestatus.textContent = ``;
+
 }
 
 
