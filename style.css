@@ -29,7 +29,6 @@ body {
 #hangman {
   grid-column: 1 / span 4;
   grid-row: 2/ 7;
-  border: solid 2px black;
 }
 
 .word-btn {
@@ -43,7 +42,7 @@ body {
 }
 
 .display {
-  grid-column: 5 / 11;
+  grid-column: 6 / 12;
   grid-row: 5/ 7;
   font-size: 2rem;
   background-color: khaki;
