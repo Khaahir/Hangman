@@ -34,8 +34,9 @@ body {
 .display {
   grid-column: 6 / 12;
   grid-row: 5/ 7;
-  font-size: 2rem;
+  font-size: 3rem;
   background-color: khaki;
+  text-align: center;
 }
 
 .again {
