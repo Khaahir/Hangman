@@ -17,6 +17,7 @@ let randomWord;
 const display = document.querySelector(".display");
 const countGuess = document.querySelector(".count-guess");
 const btnAgain = document.querySelector(".again");
+const usedLetters = document.querySelector('.used-letters')
 
 function reset() {
 
@@ -45,16 +46,27 @@ function displayWord() {
 document.addEventListener("keydown", (event) => {
   const letter = event.key.toLowerCase();
   
-  // Här kan man kontrollera att inmatningen är en boksatv
+  // Om bokstaven finns i ordet, uppdatera de rätta gissningarna
+  if (randomWord.includes(letter)) {
+    updateCorrectGuesses(letter);
+  }
 
-  console.log(letter); 
+  console.log(letter);
 });
 
 function handleGuess() {}
 
 function updateWrongGusses(letter) {}
 
-function updateCorrectGusses() {}
+function updateCorrectGuesses(letter) {
+  for (let i = 0; i < randomWord.length; i++) {
+    if (randomWord[i] === letter) {
+      guessedLetters[i] = letter;
+    }
+  }
+  // uppdaterar ord i displayen
+  displayWord();
+}
 
 function checkGameStatus() {}
 
