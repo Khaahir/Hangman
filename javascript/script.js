@@ -9,16 +9,16 @@ const words = [
   "mongodb",
 ];
 let guessedLetters = [];
-let wrongGuesses = [];
-let attempts = 6;
+let wrongGuesses = [];  // Lista för felaktiga gissningar
+let attempts = 6; // antaö max gissningar
 let randomWord;
 
 const display = document.querySelector(".display");
 const countGuess = document.querySelector(".count-guess");
 const btnAgain = document.querySelector(".again");
 countGuess.textContent = attempts;
-display.vlaue = guessedLetters;
-const usedLetters = document.querySelector('.used-letters')
+display.value = guessedLetters;
+const usedLetters = document.querySelector('.used-letters') // visa använda bokstäver
 
 function reset() {}
 
@@ -37,6 +37,7 @@ function startGame() {
 function displayWord() {
   // Uppdaterar displayfältet med understrykningar med antal bokstäver i ett ord
   display.value = guessedLetters.join(" ");
+  usedLetters.textContent = `Felaktiga gissningar: ${wrongGuesses.join(", ")}`; // visa använda bokstäver
 }
 
 // Event till en lyssnare för tangenttryckningar
@@ -46,6 +47,8 @@ document.addEventListener("keydown", (event) => {
   // Om bokstaven finns i ordet, uppdatera de rätta gissningarna
   if (randomWord.includes(letter)) {
     updateCorrectGuesses(letter);
+  }else {
+    updateWrongGuesses(letter); // annars hanterar felaktig gissningar
   }
 
   console.log(letter);
@@ -53,7 +56,15 @@ document.addEventListener("keydown", (event) => {
 
 function handleGuess() {}
 
-function updateWrongGusses(letter) {}
+function updateWrongGuesses(letter) {
+  if (!wrongGuesses.includes(letter)) {
+    wrongGuesses.push(letter); 
+    attempts--;
+    countGuess.textContent = attempts;
+    displayWord(); 
+  }
+
+}
 
 function updateCorrectGuesses(letter) {
   for (let i = 0; i < randomWord.length; i++) {
