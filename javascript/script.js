@@ -62,6 +62,7 @@ function updateWrongGuesses(letter) {
   if (!wrongGuesses.includes(letter)) {
     wrongGuesses.push(letter);
     attempts--;
+
     countGuess.textContent = attempts;
     displayWord();
   }
